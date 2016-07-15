@@ -1,5 +1,7 @@
 
-## creates a matrix object with it's inverse
+## cache matrix "class": list with getter / setter
+## usage: m <- makeCacheMatrix(c(4,5,6,2), nrow=2)
+## 
 
 makeCacheMatrix <- function(x = matrix()) {
     mtx <- NULL
@@ -14,19 +16,22 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## returns inverse matrix for given matrix "x" from cache
+## property "x": as returned by "makeCacheMatrix" 
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
         m <- x$getinverse()
-        # cache lookup
+        ## cache lookup
         if (!is.null(m)) {
+            ## if inverse already availabe, returns from cache
             message("getting cached data")
             return(m)
         }
-        # compute inverse
+        ## ... inverse not in cache
+        ## compute inverse
         m <- solve(x$get(), ...)
-        # add inverse to cache
+        ## add inverse to cache
         x$setinverse(m)
         m
 }
